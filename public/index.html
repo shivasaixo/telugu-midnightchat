@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#111b21">
+  <title>Telugu MidnightChat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="midnight">
+  <section id="welcome-screen" class="welcome-screen">
+    <div class="welcome-card">
+      <div class="welcome-mark">T</div><p class="label">TELUGU COMMUNITY</p><h1>MidnightChat</h1><p class="welcome-copy">A lively global room for late-night conversations, friends, and community.</p>
+      <div class="auth-switch"><button class="auth-tab active" data-auth-mode="guest" type="button">Guest Login</button><button class="auth-tab" data-auth-mode="account" type="button">Account Login / Register</button></div>
+      <form id="auth-form" class="auth-form">
+        <label for="auth-username">Display name</label><input id="auth-username" maxlength="32" placeholder="How should we call you?" required>
+        <div id="account-fields" hidden><label for="auth-email">Email</label><input id="auth-email" type="email" maxlength="160" placeholder="you@example.com"><label for="auth-password">Password</label><input id="auth-password" type="password" maxlength="80" placeholder="Your account password"><p class="form-hint">Owner access uses the verified account credentials.</p></div>
+        <button class="primary-button" type="submit"><span id="auth-submit-label">Enter as guest</span><span>↗</span></button><p id="auth-error" class="auth-error" role="alert"></p>
+      </form>
+    </div>
+  </section>
+
+  <main id="chat-app" class="chat-app" hidden>
+    <header class="topbar"><button id="online-toggle" class="brand" type="button" aria-label="Show online users"><span class="brand-avatar">T</span><span><strong>Telugu MidnightChat</strong><small><i></i><b id="user-count">0</b> online</small></span></button><div class="header-actions"><button id="theme-button" class="header-icon" type="button" aria-label="Change theme">◐</button><button id="profile-button" class="profile-button" type="button" aria-label="Open profile"><span id="profile-avatar">N</span></button></div></header>
+    <nav class="chat-tabs" aria-label="Chat views"><button class="chat-tab active" data-view="global" type="button">Global Chat</button><button class="chat-tab" data-view="friends" type="button">Friends <em id="friend-count">0</em></button><button class="chat-tab" data-view="dm" type="button">Private Chat</button></nav>
+    <section class="presence-strip" aria-live="polite"><span id="connection-dot"></span><span id="connection-status">Connected</span><span id="typing-indicator"></span></section><section id="messages" class="messages" aria-live="polite"></section>
+    <section id="friends-view" class="list-view" hidden><div class="view-heading"><div><p class="label">COMMUNITY</p><h2>Friends & requests</h2></div></div><div id="friend-requests" class="request-list"></div><div id="friends-list" class="friends-list"></div></section>
+    <form id="message-form" class="composer"><button id="attach-button" class="composer-icon" type="button" aria-label="Attach media">＋</button><input id="media-input" type="file" accept="image/*" hidden><button id="emoji-button" class="composer-icon" type="button" aria-label="Open emoji picker">☺</button><label class="sr-only" for="message-input">Type a message</label><input id="message-input" maxlength="500" placeholder="Type a message..." autocomplete="off"><button class="send-button" type="submit" aria-label="Send message">➤</button><div id="emoji-picker" class="emoji-picker" hidden></div></form>
+
+    <aside id="online-drawer" class="online-drawer" aria-hidden="true"><div class="drawer-heading"><div><p class="label">COMMUNITY</p><h2>Online now</h2></div><button id="close-drawer" class="close-button" type="button" aria-label="Close online users">×</button></div><div id="online-list" class="online-list"></div><div id="admin-panel" class="admin-panel" hidden><p class="label">OWNER CONTROLS</p><button data-admin="lock" type="button">Lock room</button><button data-admin="wipe" type="button">Wipe chat</button><p class="admin-help">Select a member to manage their rank or moderation.</p></div></aside>
+  </main>
+
+  <dialog id="profile-dialog"><form id="profile-form" class="profile-panel" method="dialog"><div class="dialog-heading"><div><p class="label">YOUR PROFILE</p><h2>Community identity</h2></div><button id="close-profile" class="close-button" type="button" aria-label="Close profile">×</button></div><div class="profile-hero"><div id="profile-preview-avatar">N</div><div><strong id="profile-name">Night Owl</strong><span id="profile-rank">[GUEST]</span><strong id="profile-streak">Day Streak 1 🔥</strong><div class="xp-track"><i id="profile-xp-bar"></i></div><small id="profile-level">Level 1 · 0 XP · 0%</small></div></div><label for="profile-username">Display name</label><input id="profile-username" maxlength="32"><label for="profile-color">Name color</label><select id="profile-color"><option value="#8be9fd">Sky</option><option value="#50fa7b">Mint</option><option value="#ffb86c">Sunset</option><option value="#ff79c6">Rose</option><option value="#bd93f9">Lavender</option><option value="#f1fa8c">Lemon</option></select><label for="profile-avatar-input">Display picture</label><input id="profile-avatar-input" type="file" accept="image/png,image/jpeg,image/gif,image/webp"><button class="primary-button" type="submit">Save profile</button></form></dialog>
+  <dialog id="theme-dialog"><form class="theme-panel" method="dialog"><div class="dialog-heading"><div><p class="label">APPEARANCE</p><h2>Choose a theme</h2></div><button class="close-button" type="submit" aria-label="Close themes">×</button></div><div id="theme-options" class="theme-options"></div></form></dialog>
+  <div id="level-burst" class="level-burst" aria-hidden="true"></div><div id="toast" class="toast" role="status"></div>
+  <script src="/socket.io/socket.io.js"></script><script src="client.js"></script>
+</body>
+</html>
