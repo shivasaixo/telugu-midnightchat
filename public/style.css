@@ -1,4 +1,5 @@
 img.user-dp, img.avatar { width: 36px !important; height: 36px !important; min-width: 36px; min-height: 36px; border-radius: 50% !important; object-fit: cover !important; display: inline-block; max-width: 100%; vertical-align: middle; }
+.font-cursive { font-family: cursive !important; } .font-mono { font-family: 'DM Mono', monospace !important; } .font-cyber { font-family: 'Space Grotesk', sans-serif !important; letter-spacing: .5px; text-transform: uppercase; } .font-gothic { font-family: Georgia, serif !important; } .font-neon { color: #d9b3ff !important; text-shadow: 0 0 8px #a855f7; }
 .message-avatar, .online-avatar { width: 36px; height: 36px; min-width: 36px; min-height: 36px; overflow: hidden; }
 .shared-image { display: block; width: auto; max-width: min(100%, 360px); height: auto; max-height: 320px; margin-top: 8px; border-radius: 7px; object-fit: contain; }
 .profile-panel img.user-dp, .profile-panel img.avatar { max-width: 62px; max-height: 62px; }
